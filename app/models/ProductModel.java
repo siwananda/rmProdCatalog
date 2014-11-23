@@ -99,10 +99,6 @@ public class ProductModel {
      * @return list of found products
      */
     public static List<ProductModel> listByQuery(String query, int skip, int limit) {
-        if (limit <= 0) {
-            return all();
-        }
-
         if (query != null && !query.equalsIgnoreCase("")) {
             return MorphiaObject.datastore.createQuery(ProductModel.class)
                     .where(query).offset(skip).limit(limit).retrievedFields(true, "id", "title").asList();

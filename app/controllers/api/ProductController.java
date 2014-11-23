@@ -24,7 +24,7 @@ public class ProductController extends Controller {
      * Searches product on a given query string.
      * Expecting idQuery as request parameter
      *
-     * @return arrays of product with a max amount of fixed 5
+     * @return arrays of product with - updated to unlimited amount
      */
     public static Result searchProduct() {
         Map queryString = request().queryString();
@@ -32,7 +32,10 @@ public class ProductController extends Controller {
 
             //search and return max of 10
             String queryRequest = request().getQueryString("idQuery");
-            List<ProductModel> productModelList = ProductModel.listByQuery("/^" + queryRequest + ".*/.test(this.id)", 0, 10);
+            //List<ProductModel> productModelList = ProductModel.listByQuery("/^" + queryRequest + ".*/.test(this.id)", 0, 10);
+
+            //Updated to unlimited amount as per the request
+            List<ProductModel> productModelList = ProductModel.listByQuery("/^" + queryRequest + ".*/.test(this.id)", 0, 0);
 
             ObjectMapper objectMapper = new ObjectMapper();
             ArrayNode queryResult = objectMapper.createArrayNode();

@@ -15,6 +15,6 @@ public class Application extends Controller {
     }
 
     public static Result prodSearch(){
-        return ok(productSearch.render("kontol"));
+        return ok(productSearch.render("Product Search"));
     }
 }
